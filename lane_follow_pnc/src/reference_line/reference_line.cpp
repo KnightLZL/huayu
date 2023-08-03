@@ -170,11 +170,11 @@ namespace lane_follow_pnc
             ub[2*i+1] = path_point2d[i].second + y_upper_bound;     
         }
 
-        cout<<"输出约束向量"<<endl;
-        for(int i =0; i<2*n; i++)
-        {
-            cout<<lb[i]<<"\t"<<f[i]<<"\t"<<ub[i]<<endl;
-        }
+        // cout<<"输出约束向量"<<endl;
+        // for(int i =0; i<2*n; i++)
+        // {
+        //     cout<<lb[i]<<"\t"<<f[i]<<"\t"<<ub[i]<<endl;
+        // }
 
         // 给平滑代价矩阵A1赋值
         for(int j =0; j<n-2; j++)
@@ -223,10 +223,12 @@ namespace lane_follow_pnc
             cout<<"QSQP init failed"<<endl;
             return;
         }
+
         if(!solver.solve())
         {
             cout<<"QSQP solve failed"<<endl;
         }
+
         //获取最后的优化量
         qp_solution = solver.getSolution();
 

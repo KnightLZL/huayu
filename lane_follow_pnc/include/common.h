@@ -51,5 +51,16 @@ namespace lane_follow_pnc
     FrenetPoint calcFrenet(const CarState &global_point,
                                 const std::vector<PathPoint> &ref_path);
 
+    //归一化角度
+    double NormalizeAngle(const double angle);
+
+    // frenet转cartesian
+    void Frenet2Cartesian( const double rs, const double rx, const double ry, const double rtheta,
+                                const double rkappa, const double rdkappa,
+                                const std::array<double, 3>& s_condition,
+                                const std::array<double, 3>& d_condition, double* const ptr_x,
+                                double* const ptr_y, double* const ptr_theta, double* const ptr_kappa,
+                                double* const ptr_v, double* const ptr_a); 
+
 }//lane_follow_pnc
 

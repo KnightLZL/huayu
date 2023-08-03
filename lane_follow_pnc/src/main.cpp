@@ -7,7 +7,7 @@ using namespace std;
 using namespace lane_follow_pnc;
 #define N 2264
 
-int main() 
+void testFem()
 {
     // 获取参考线信息
      // 读取文件
@@ -62,9 +62,7 @@ int main()
     // 定义匹配点坐标
     int pre_match_index = 0;
 
-
     int start_index = pre_match_index;
-
     // 1从全局路径获取局部路径做参考线平滑
     CarState cur_pose;
     cur_pose.x = host_x[0];
@@ -78,7 +76,6 @@ int main()
         temp.y = host_y[i];
         global_path.push_back(temp);
         // cout<<global_path[i].x<<" "<<global_path[i].y<<" "<<global_path[i].heading<<endl;
-
     }
 
     std::vector<PathPoint> local_path = reference_line.local_path_truncation(cur_pose, global_path, start_index);
@@ -107,15 +104,22 @@ int main()
             outfile<<ref_path[i].x<<"\t"<<ref_path[i].y<<endl;
         }
         cout<<"the size of ref_path is"<<ref_path.size()<<endl;
-        // for(int i=0; i<10; ++i)
-        // {
-        //     cout<<ref_path[i].x<<"\t"<<ref_path[i].y<<" "<<ref_path[i].heading<<endl;
-        // }
         cout<<"写入成功"<<endl;
+        outfile.close();    
 
-        outfile.close();
-
-        return 0;        
+        // 输出查看下平滑后的参考线信息
+        for(size_t i=0; i<ref_path.size(); ++i)
+        {
+            cout<<ref_path[i].x<<"\t"<<ref_path[i].y<<"\t"<<ref_path[i].heading<<"\t"<<ref_path[i].kappa<<endl;
+        }   
     }
-    
+}
+
+int main() 
+{
+    // testFem();
+
+    cout<<"hello world"<<endl;
+    return 0;
+
 }
