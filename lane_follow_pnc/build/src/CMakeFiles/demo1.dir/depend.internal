@@ -313,8 +313,8 @@ src/CMakeFiles/demo1.dir/collision_detection/collision_detection.cpp.o
  /usr/local/include/osqp/types.h
  /usr/local/include/osqp/util.h
 src/CMakeFiles/demo1.dir/common.cpp.o
- ../src/../include/common.h
- ../src/../include/point_types.h
+ /media/lee/ZLLee/20230627实习/lane_follow_pnc/include/common.h
+ /media/lee/ZLLee/20230627实习/lane_follow_pnc/include/point_types.h
  /media/lee/ZLLee/20230627实习/lane_follow_pnc/src/common.cpp
  /usr/local/include/OsqpEigen/Constants.hpp
  /usr/local/include/OsqpEigen/Data.hpp
@@ -931,8 +931,12 @@ src/CMakeFiles/demo1.dir/em_planner/em_planner.cpp.o
  /usr/local/include/osqp/types.h
  /usr/local/include/osqp/util.h
 src/CMakeFiles/demo1.dir/main.cpp.o
+ ../src/../include/common.h
+ /media/lee/ZLLee/20230627实习/lane_follow_pnc/include/collision_detection/collision_detection.h
  /media/lee/ZLLee/20230627实习/lane_follow_pnc/include/common.h
+ /media/lee/ZLLee/20230627实习/lane_follow_pnc/include/em_planner/em_planner.h
  /media/lee/ZLLee/20230627实习/lane_follow_pnc/include/point_types.h
+ /media/lee/ZLLee/20230627实习/lane_follow_pnc/include/polynomial/quintc_polynomial.hpp
  /media/lee/ZLLee/20230627实习/lane_follow_pnc/include/reference_line/cubic_spline.hpp
  /media/lee/ZLLee/20230627实习/lane_follow_pnc/include/reference_line/reference_line.h
  /media/lee/ZLLee/20230627实习/lane_follow_pnc/src/main.cpp

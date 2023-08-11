@@ -123,7 +123,8 @@ namespace lane_follow_pnc
     void ReferenceLine::discrete_points_osqp(std::vector<std::pair<double,double>> &path_point2d)
     {
         int n = path_point2d.size();
-        cout<<n<<endl;
+        cout<<"参考线平滑的二次规划求解规模为："<<2*n<<endl;
+        // cout<<n<<endl;
 
         // 初始化A1, A2, A3, f,lb, ub矩阵
         // 平滑代价系数矩阵， x' A1' A1 x,(n-2)

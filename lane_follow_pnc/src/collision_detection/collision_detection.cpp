@@ -18,11 +18,16 @@ namespace lane_follow_pnc
     // 障碍物检测的构造函数
     CollisionDetection::CollisionDetection(const std::vector<Obstacle> &detected_objects,
                                            const double &collision_distance,
-                                           const std::vector<PathPoint> &ref_path)
+                                           const std::vector<PathPoint> &ref_path,
+                                           PathPoint host_match_point,
+                                           const int pre_match_index)
     {
         this->detected_objects = detected_objects;
         this->collision_distance = collision_distance;
         this->ref_path = ref_path;
+        this->host_match_point = host_match_point;
+        this->pre_match_index = pre_match_index;
+
         // 保证静态和动态障碍物列表是空的
         static_obstacle_list.clear();
         dynamic_obstacle_list.clear();
@@ -48,19 +53,20 @@ namespace lane_follow_pnc
             if(obstacle.point.v > 0.2)
             {
                 //将动态障碍物加到动态障碍物列表中
+                cout<<"动态障碍物已加到动态障碍物列表中"<<endl;
                 dynamic_obstacle_list.push_back(obstacle);
             }
             else
             {
                 //将静态障碍物投影到sl图中，并进行存储
-                obstacle.point = calcFrenet(obstacle.point, ref_path);
-                cout<<"The obstacle s and l :"<<obstacle.point.s<<"\t"<<obstacle.point.l<<endl;
-                cout<<"The obstacle x and y :"<<obstacle.point.x<<"\t"<<obstacle.point.y<<endl;
+                obstacle.point = calcFrenet(obstacle.point, ref_path,pre_match_index, host_match_point);
+                cout<<"The static obstacle s and l :"<<obstacle.point.s<<"\t"<<obstacle.point.l<<endl;
+                cout<<"The static obstacle x and y :"<<obstacle.point.x<<"\t"<<obstacle.point.y<<endl;
 
                 for(auto &box_point : obstacle.collision_box)
                 {
                     //将障碍物的八个点都投影到sl图上
-                    box_point = calcFrenet(box_point,ref_path);
+                    box_point = calcFrenet(box_point,ref_path,pre_match_index, host_match_point);
                 }
 
                 static_obstacle_list.push_back(obstacle);
@@ -107,8 +113,8 @@ namespace lane_follow_pnc
                               0, -y_rad;
 
         // 定义一组正交矩阵作为旋转矩阵
-        rotation_matrix<< std::cos(heading), std::sin(heading),
-                          -std::sin(heading), std::cos(heading),
+        rotation_matrix<< cos(heading), sin(heading),
+                          -sin(heading), cos(heading);
 
         // 计算变换后的八个点坐标
         position_matrix = translation_matrix * rotation_matrix + position_matrix;
@@ -135,43 +141,43 @@ namespace lane_follow_pnc
     }
 
 
-    // 碰撞检测并计算碰撞代价
-    /**
-     * @brief 这里或许可以不用考虑跟车和前车的位置，就简单的假设我是一个车和静态障碍物
-    */
-    // path不加const是因为要对path中的cost修改
-    bool CollisionDetection::check_collison(FrenetPath &path, 
-                            const FrenetPoint &leader_point,
-                            const bool &car_following)
-    {
-        // 遍历每个障碍物
-        for(Obstacle obstacle :detected_objects)
-        {
-            // 遍历每一个点
-            for(auto box_point : obstacle.collision_box)
-            {
-                // 遍历路径上的每一个点
-                for(int i=0; i < path.size_; ++i)
-                {
-                    double dist = calDistance(path.frenet_path[i].x, path.frenet_path[i].y,
-                                    box_point.x, box_point.y);
+    // // 碰撞检测并计算碰撞代价
+    // /**
+    //  * @brief 这里或许可以不用考虑跟车和前车的位置，就简单的假设我是一个车和静态障碍物
+    // */
+    // // path不加const是因为要对path中的cost修改
+    // bool CollisionDetection::check_collison(FrenetPath &path, 
+    //                         const FrenetPoint &leader_point,
+    //                         const bool &car_following)
+    // {
+    //     // 遍历每个障碍物
+    //     for(Obstacle obstacle :detected_objects)
+    //     {
+    //         // 遍历每一个点
+    //         for(auto box_point : obstacle.collision_box)
+    //         {
+    //             // 遍历路径上的每一个点
+    //             for(int i=0; i < path.size_; ++i)
+    //             {
+    //                 double dist = calDistance(path.frenet_path[i].x, path.frenet_path[i].y,
+    //                                 box_point.x, box_point.y);
                     
-                    // 计算碰撞的cost（不计算跟车目标的碰撞cost）
-                    if(dist < 3.5 && !(car_following)&&
-                    calDistance(obstacle.point.x, obstacle.point.y, leader_point.x, leader_point.y) < 2.0)
-                    {
-                        path.cost += 3.0 / dist;
-                    }
+    //                 // 计算碰撞的cost（不计算跟车目标的碰撞cost）
+    //                 if(dist < 3.5 && !(car_following)&&
+    //                 calDistance(obstacle.point.x, obstacle.point.y, leader_point.x, leader_point.y) < 2.0)
+    //                 {
+    //                     path.cost += 3.0 / dist;
+    //                 }
 
-                    if(dist <= collision_distance)
-                    {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
+    //                 if(dist <= collision_distance)
+    //                 {
+    //                     return false;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return true;
+    // }
 
 } //lane_follow_pnc
 

@@ -312,8 +312,8 @@ src/CMakeFiles/demo1.dir/collision_detection/collision_detection.cpp.o: /usr/loc
 src/CMakeFiles/demo1.dir/collision_detection/collision_detection.cpp.o: /usr/local/include/osqp/types.h
 src/CMakeFiles/demo1.dir/collision_detection/collision_detection.cpp.o: /usr/local/include/osqp/util.h
 
-src/CMakeFiles/demo1.dir/common.cpp.o: ../src/../include/common.h
-src/CMakeFiles/demo1.dir/common.cpp.o: ../src/../include/point_types.h
+src/CMakeFiles/demo1.dir/common.cpp.o: ../include/common.h
+src/CMakeFiles/demo1.dir/common.cpp.o: ../include/point_types.h
 src/CMakeFiles/demo1.dir/common.cpp.o: ../src/common.cpp
 src/CMakeFiles/demo1.dir/common.cpp.o: /usr/local/include/OsqpEigen/Constants.hpp
 src/CMakeFiles/demo1.dir/common.cpp.o: /usr/local/include/OsqpEigen/Data.hpp
@@ -930,8 +930,12 @@ src/CMakeFiles/demo1.dir/em_planner/em_planner.cpp.o: /usr/local/include/osqp/sc
 src/CMakeFiles/demo1.dir/em_planner/em_planner.cpp.o: /usr/local/include/osqp/types.h
 src/CMakeFiles/demo1.dir/em_planner/em_planner.cpp.o: /usr/local/include/osqp/util.h
 
+src/CMakeFiles/demo1.dir/main.cpp.o: ../src/../include/common.h
+src/CMakeFiles/demo1.dir/main.cpp.o: ../include/collision_detection/collision_detection.h
 src/CMakeFiles/demo1.dir/main.cpp.o: ../include/common.h
+src/CMakeFiles/demo1.dir/main.cpp.o: ../include/em_planner/em_planner.h
 src/CMakeFiles/demo1.dir/main.cpp.o: ../include/point_types.h
+src/CMakeFiles/demo1.dir/main.cpp.o: ../include/polynomial/quintc_polynomial.hpp
 src/CMakeFiles/demo1.dir/main.cpp.o: ../include/reference_line/cubic_spline.hpp
 src/CMakeFiles/demo1.dir/main.cpp.o: ../include/reference_line/reference_line.h
 src/CMakeFiles/demo1.dir/main.cpp.o: ../src/main.cpp

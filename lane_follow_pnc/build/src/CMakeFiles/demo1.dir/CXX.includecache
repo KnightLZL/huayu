@@ -173,8 +173,8 @@ OsqpEigen/OsqpEigen.h
 /media/lee/ZLLee/20230627实习/lane_follow_pnc/include/collision_detection/collision_detection.h
 
 /media/lee/ZLLee/20230627实习/lane_follow_pnc/src/common.cpp
-common.h
-/media/lee/ZLLee/20230627实习/lane_follow_pnc/src/common.h
+../include/common.h
+/media/lee/ZLLee/20230627实习/lane_follow_pnc/include/common.h
 vector
 -
 
@@ -193,6 +193,10 @@ iomanip
 /media/lee/ZLLee/20230627实习/lane_follow_pnc/include/reference_line/reference_line.h
 ../include/point_types.h
 /media/lee/ZLLee/20230627实习/lane_follow_pnc/include/point_types.h
+../include/collision_detection/collision_detection.h
+/media/lee/ZLLee/20230627实习/lane_follow_pnc/include/collision_detection/collision_detection.h
+../include/em_planner/em_planner.h
+/media/lee/ZLLee/20230627实习/lane_follow_pnc/include/em_planner/em_planner.h
 
 /media/lee/ZLLee/20230627实习/lane_follow_pnc/src/reference_line/reference_line.cpp
 ../../include/reference_line/reference_line.h
