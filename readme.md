@@ -5,34 +5,35 @@ lane follow 场景下的pnc
 
 # 功能
 实现EM Planner的参考线平滑，路径规划
+！[](https://github.com/KnightLZL/huayu/raw/master/lane_follow_pnc/src/data/dp_path.jpg)
 
-！[](https://github.com/KnightLZL/huayu/blob/master/lane_follow_pnc/src/data/dp_path.jpg)
+## 环境要求
 
-# 环境要求
+ubuntu18.04
 
-## ubuntu18.04
+Cmake 3.10
 
-## Cmake 3.10
+Eigen3
 
-## Eigen3
+### 使用步骤
 
-# 使用步骤
+cd lane_follow_pnc/
 
-## cd lane_follow_pnc/
+mkdir build/
 
-## mkdir build/
+cd build/
 
-## cd build/
+cmake ..
 
-## cmake ..
+make
 
-## make
+cd ..
 
-## cd ..
+cd bin/
 
-## cd bin/
+./demo1
 
-## ./demo1
+### 补充
 demo为参考线平滑，demo1为path规划
 
 
