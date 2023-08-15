@@ -56,7 +56,7 @@ public:
         a4 = coeff[4];
         a5 = coeff[5];
 
-        std::cout<<"完成五次多项式构造"<<std::endl;
+        // std::cout<<"完成五次多项式构造"<<std::endl;
     };
 
     // 在构造五次多项式，可以输入的s,德奥l, dl , ddl, dddl

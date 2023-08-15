@@ -140,11 +140,13 @@ namespace lane_follow_pnc
                 {
                     cost_collision +=0;
                 }
-                cout<<"碰撞代价计算完毕"<<endl;
+                // cout<<"碰撞代价计算完毕"<<endl;
             }
 
-            cout<<"五次多项式连接代价计算完毕"<<endl;
+            // cout<<"五次多项式连接代价计算完毕"<<endl;
         }
+        // cout<<"碰撞代价计算完毕"<<endl;
+        // cout<<"五次多项式连接代价计算完毕"<<endl;
         return cost_smooth + cost_ref + cost_collision;  
     }
 
@@ -419,15 +421,17 @@ namespace lane_follow_pnc
         }
         H_CENTER = H_L;
 
-        for(int i = 0; i<n;++i)
+        // 自己写的是i <n,这里会越界
+        for(int i = 0; i<n-1;++i)
         {
             int row = i;
             int col = 3*i;
 
             H_DDDL.insert(row, col+2) =-1;
-            H_DDDL.insert(row,col+5) = 1;
+            H_DDDL.insert(row, col+5) = 1;
         }
-
+        
+        // 这里自己赋值的是三个0
         H_L_END.insert(3*n-3, 3*n-3) = 1;
         H_DL_END.insert(3*n-2, 3*n-2) = 1;
         H_DDL_END.insert(3*n-1, 3*n-1) = 1;
@@ -443,6 +447,12 @@ namespace lane_follow_pnc
             this->qp_cost_end_ddl * (H_DDL_END.transpose() * H_DDL_END);
         H = 2 * H;
 
+        // 求f,自己没有加f
+        // for (int i = 0; i < n; i++)
+        // {
+        //     f(3 * i) = (-2) * this->qp_cost_ref * dp_final_path[i].l;
+        //     // f(3 * i) = (-2) * this->qp_cost_ref * 0.5 * (l_min(i) + l_max(i));
+        // }
 
         /*****************计算相应约束*******************/
         // 等式约束，加加速度优化法
@@ -459,7 +469,7 @@ namespace lane_follow_pnc
 
             A_merge.insert(row+1, col+1) = 1;
             A_merge.insert(row+1, col+2) = ds / 2;
-            A_merge.insert(row+1, col+5) = -1;
+            A_merge.insert(row+1, col+4) = -1;
             A_merge.insert(row+1, col+5) = ds/2;
         }
         

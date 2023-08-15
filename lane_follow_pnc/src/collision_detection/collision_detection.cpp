@@ -148,7 +148,7 @@ namespace lane_follow_pnc
     // // path不加const是因为要对path中的cost修改
     // bool CollisionDetection::check_collison(FrenetPath &path, 
     //                         const FrenetPoint &leader_point,
-    //                         const bool &car_following)
+    //                         cons0t bool &car_following)
     // {
     //     // 遍历每个障碍物
     //     for(Obstacle obstacle :detected_objects)
