@@ -5,7 +5,7 @@ lane follow 场景下的pnc
 
 # 功能
 实现EM Planner的参考线平滑，路径规划
-！[](https://github.com/KnightLZL/huayu/raw/master/lane_follow_pnc/src/data/dp_path.jpg)
+![image](https://github.com/KnightLZL/huayu/blob/master/lane_follow_pnc/src/data/qp_path.jpg)
 
 ## 环境要求
 
