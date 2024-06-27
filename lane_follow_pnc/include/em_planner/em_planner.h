@@ -71,7 +71,7 @@ namespace lane_follow_pnc
 
         FrenetPath planning(Spline2D &ref_frenet, const FrenetPoint &initial_point);
 
-    private:
+    // private:
         double path_ds = 0.1;  //路径规划采样点间隔,对dp规划后路径的增密间隔
         
         /*****************DP path相关*****************/
